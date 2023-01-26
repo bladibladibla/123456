@@ -1,0 +1,129 @@
+# Scriptnaam:   ProcessCheck Sjabloon.txt
+# functie   :   check processen van een server tegen een whitelist
+# Auteur    :   Stichting PraktijkLeren, BvdF
+# Versie    :   0.5
+# datum     :   23 december 2021
+#
+# Argumenten [minuten-numerieke string [servernaam-alfanumerieke string]]
+#
+# de comments die beginnen en eindigen met *** zijn aanwijzingen voor jouw opdracht
+#
+$minuten = 1;                # Zetten van default waarden
+$server = "svr001";    
+$whiteListFile = $home + '\MonTool\WhiteList.txt';
+$signaleringenFile = $home + '\MonTool\Signaleringen.txt';
+
+# *** zorg dat als het aantal minuten wordt meegegeven bij de start deze de default waarde vervangt ***
+
+$minutes = Read-Host -Prompt "vul het aantal minuten in"
+Write-Host "het aantal minuten is: $minutes"
+
+# *** zorg dat als een servernaam wordt meegegegevn bij de start dat die de default waarde overschrijft ***
+
+$server = Read-Host -Prompt "vul de server naam in"
+Write-Host "The server name is: $server"
+
+$periode = New-timespan -minutes $minuten;      # bereid de tijdsinterval voor
+$startTijd = Get-Date;
+$stopTijd = (Get-Date) + $periode;
+
+Write-Host "`nProcesChecker is gestart om", $startTijd, "op server", $server, "voor een periode van", $minuten, "minuten";
+Set-Content -path $signaleringenFile -value $server, $datum;    # maak lege signaleringenfile
+[string[]]$arrayMetWhiteList = Get-Content -Path $whiteListFile # lees de witelist in een array
+
+# *** BEGIN - zorg dat de onderstaande acties herhaald worden tot het $minuten is verstreken ***
+
+
+
+
+    [string[]]$arrayMetProcessen = invoke-command -Computer $server {Get-Process | Select-Object -Expandproperty name}
+    Foreach ($ProcessName in $arrayMetProcessen) {
+        If (-Not ($arrayMetWhiteList -Match $processName)) {    # proces in de WhiteList?
+            $answer = Read-Host -Prompt "Proces", $processName, "is onbekend, toevoegen aan whitelist (y/n)?";
+            While (($answer -ne "y") -And ($answer -ne "n")) {
+                $answer = Read-Host -Prompt "Keuze (y/n)";
+            }
+            If ($answer -Eq 'y') {                              # procesnaam toevoegen aan whitelist
+                $arrayMetWhiteList += $processName;             
+            }
+            Else {                                              # procesnaam toevoegen aan signaleringen
+                Add-Content -Path $signaleringenFile -Value $processName
+            }
+        }
+    }
+
+    # *** zorg dat ik iets op het scherm zie bewegen gedurende de 5 seconden tussen de herhalingen ***
+
+Define the size of the rectangle
+$width = 30
+$height = 15
+
+Draw the top line of the rectangle
+for ($i = 0; $i -lt $width; $i++) {
+Write-Host -NoNewLine "*"
+Start-Sleep -Milliseconds 20
+}
+Write-Host ""
+
+Draw the middle lines of the rectangle
+for ($j = 0; $j -lt $height - 2; $j++) {
+Write-Host -NoNewLine ""
+for ($i = 0; $i -lt $width - 2; $i++) {
+Write-Host -NoNewLine " "
+Start-Sleep -Milliseconds 20
+}
+Write-Host ""
+Start-Sleep -Milliseconds 20
+}
+
+Draw the bottom line of the rectangle
+for ($i = 0; $i -lt $width; $i++) {
+Write-Host -NoNewLine "*"
+Start-Sleep -Milliseconds 20
+}
+
+
+    Wait-Event  -TimeOut 5       # heartbeat, wachtperiode tussen de herhalingen in 
+
+# *** EIND - tot hier herhalen gedurende de $minuten ***
+
+# nu komen de afsluitende acties, whitelist naar bestand zetten en signaleringen printen
+
+# *** vraag of de whitelist leeg gemaakt moet worden, accepteer alleen y en n ***
+
+$answer = Read-Host -Prompt "print het bericht (j/n)?";
+While (($answer -ne "j") -And ($answer -ne "n")) {
+$answer = Read-Host -Prompt "fout ingevuld, typ aub y or n";
+}
+If ($answer -Eq 'j') {
+# code to print alert messages
+}
+
+
+# *** als de whitelist leeg moet schrijf een lege whitelist weg, anders de huidige ***
+
+Out-File -FilePath "whitelist.txt"
+
+$arrayMetWhiteList | Out-File $whiteListFile;
+
+# *** vraag of de signaleringen op het scherm moeten komen, accepteer y om te printen, iets anders zie je als n ***
+
+$answer = Read-Host -Prompt "print het bericht (j/n)?";
+While (($answer -ne "j") -And ($answer -ne "n")) {
+$answer = Read-Host -Prompt "fout ingevuld, typ aub y or n";
+}
+If ($answer -Eq 'j') {
+Set-Content -path $ListFile -value $null;
+}
+
+
+# *** indien y: druk de signaleringen netjes af op het scherm ***
+Write-Host "`n`n======================`nSignaleringen van", $startTijd, "tot", $stopTijd;
+write-host " *** deze lijst moet je dus nog maken *** "
+
+write-host " hier de txt file die u wilt " get-content
+
+
+
+# *** voeg de einddatum/tijd toe aan de afsluitende boodschap
+Write-Host "======================`nProcesChecker is beÃ«indigd om ", "`n" ;
