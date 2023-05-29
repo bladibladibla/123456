@@ -1,0 +1,92 @@
+precies volgends het technische ontwerp werken
+
+
+poorten in trunks zetten
+enable
+configure terminal
+interface range ( alle poorten die je in trunk wil verander )
+no shutdown
+switchport mode trunk
+switchport trunk native vlan 99 
+.
+.
+.
+switches configureren
+enable
+config terminal
+interface range ( alle poorten die je in trunk wil verander )
+switchport mode trunk
+switchport trunk native vlan 99
+exit
+.
+.
+.
+vlan naam geven
+enable
+config terminal
+vlan 10
+name Vlan10
+en dan zo verder gaan met al die andere
+(do show vlan brief om de vlans te checken) 
+.
+.
+.
+vtp instellen VOOR MULTILAYER SWITCH
+ 
+enable
+config terminal
+vtp version? ( kijken naar de versie van de vtp en die op de nieuwste zetten)
+vtp?
+vtp domain (de domain naam)
+vtp mode server (ALLLEEN OP EEN MULTI LAYER SWITCH)
+.
+.
+.
+vtp instellen op switch
+enable
+config terminal
+vtp mode client
+vtp domain ( de naam van het domain)
+.
+.
+.
+spanning tree instellen multilayer switch
+ 
+enable
+config terminal
+spanning-tree vlan (vlan die je moet hebben) root primary
+spanning-tree vlan (vlan die je moet hebben) priority (priority die je nodig hebt)
+.
+.
+.
+spanning tree instellen switch
+enable
+config terminal
+spanning-tree vlan (vlan die je moet hebben) priority (priority die je nodig hebt)
+.
+.
+.
+switch poorten op vlans zetten
+enable
+config terminal
+interface range fa 0/1 - fa 0/5
+switchport mode access
+switchport access vlan 10
+.
+.
+.
+wpc300n in de laptop zetten
+pcwireless
+en dan connecten op de vlan en dan het wachtwoord invoeren 
+.
+.
+.
+pedge configureren
+enable
+config terminal
+interface gi 0/0/1
+ip address dhcp
+no shut voor de zekerheid
+.
+.
+no switchport commando gebruiken om niet als een switch te werken
