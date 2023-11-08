@@ -1,0 +1,30 @@
+1. >> enable
+
+>> show run
+
+^^
+Enter drukken tot je ziet:
+>> "Line vty 0 4"
+>> Login Local
+>> Transport input "SSH"
+(als jij ziet staan (SSH) dan betekent het dat "Telnet" is uitgeschakeld)
+
+
+  
+2. >> enable 
+
+>> show int trunk
+
+^^
+VLANS checken voor Trunk
+
+B1K2W2 ( Packet Tracer examen samenvatting)
+Video 1
+Als eerste download je Visio om een tekening te maken. Als je dat hebt gedaan dan klik je in Visio op
+“Nieuwe tekening maken”. Dan kun je hier jouw eigen netwerktekening bouwen. Als je allemaal
+apparaten wilt toevoegen, dan druk je op “Meer Shapes”. Daarna klik je op Stencil Openen en zoek
+je het bestand 3015. Nu kun je de elementen toevoegen zoals Routers en andere hardware.
+Daarna klik je bij ontwerpen op Formaat, die zet je op A4. Daarna naast Formaat klik je op Afdruk-
+afstand en kies je voor liggend.
+Bij invoegen kun je apparaten met elkaar verbinden door Verbindingslijnen te kiezen en als je tekst
+wilt invoegen dan klik je op bijschrift.
