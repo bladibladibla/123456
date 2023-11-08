@@ -1,0 +1,301 @@
+packet tracer b1-k2-w1 stap voor stap
+
+1. als eerst begin je met de kabels van de poorten die je in trunk moet zetten aan elkaar bekabelen
+2. dan maak je backup lijnen aan (de switches aan elkaar zetten)
+3. begin bij de multi layer switch en gebruik de commando 
+
+enable
+config terminal 
+interface (de poorten die moet doen)
+no shut 
+switchport mode trunk
+switchmode trunk native vlan 99
+
+( gebruik DO SHOW RUN om het te checken )
+
+4. nu ga je de switches in trunk mode zetten
+
+enable 
+config t
+interface (poorten die je nodig hebt)(hier moet je de poort die naarandere switch gaat en die naar mls gaat)
+no shut
+switchport mode trunk
+switchport trunk native vlan 99
+
+5. nu ga je de vlans aanmaken met dit commando( e kunt dit gewoon op de multi layer switch doen dan komen ze allemaal wel goed uit)
+
+enable
+config t
+vlan 1 (hier moet je de vlan zetten die je wil configureren)
+name Vlan1 (hier zet je dan een naam die je de vlan wil geven)
+vlan 10 (hier moet je de vlan zetten die je wil configureren)
+name Vlan10 (hier zet je dan een naam die je de vlan wil geven)
+vlan 10 (hier moet je de vlan zetten die je wil configureren)
+name Vlan20 (hier zet je dan een naam die je de vlan wil geven)
+enz..
+
+6. nu ga je de vtp configureren op mls met de commando:
+
+enable
+config t 
+vtp version 2
+vtp domain (naam van de vtp server)
+vtp mode server
+
+7. en dan ga je vtp configureren op alle switches
+
+enable
+config t
+vtp mode client
+vtp domain (naam van de vtp server)
+
+
+8. spanning tree instelen op alle switches begin bij de mls
+
+MLS:
+
+enable
+config t
+spanning-tree vlan 1-100 root primary
+spanning-tree vlan 1-100 priority 4096
+
+
+switches:
+
+enable
+config t
+spanning-tree vlan1-100 priority 8192
+( en dan zo door gaat tot de laatste switch )
+
+
+9. nu ga je de poorten klaar maken om toe te voegen met de laptop, printers en pc's
+
+enable
+config t
+interface (de poorten die je nodig hebt)
+description vlan10 (vlan die waar de poorten in moeten lopen)
+switchport mode access
+switchport access vlan 10 (vlan die waar de poorten in moeten lopen)
+
+en dan zo verder gaan tot je alles poorten bij de juisten vlan hebt gezet en dan met het show run commando alles wat je hier hebt veranderd ^^^^ kopieeren in notepad en dat in de andere switches plakken
+
+
+10. en dan ga je alle apparaten aan eklaar koppelen met kabels. JE MOET DE POORTEN GEBRUIKEN DIE IN HET TECHNISCHE ONTWERP STAAN.
+
+11. daarna ga de ACESSPOINT CONFIGUREREN
+
+ SET DE ACCESSPOINT AAN VIA DE KNOP
+ ALLES OP AAN EN ALLES OP AUTOMATISCH ZETTEN
+ SSID MOET JE VERANDEREN 
+ WACHTWOORD MOET JE VERANDEREN
+	
+
+12. nu ga je de laptops koppelen aan de accespoint
+
+de laptop uitzetten
+daarna haal je de kaart eruit en zet je een nieuwe erin
+dan zet je hem aan
+dan naar desktop
+dan naar pc wireless
+dan connect
+
+
+13. nu ga je de printers koppelen 
+
+a. 	ga naar config->fastethernet0 
+	portstatus zet je aan en je zet alles op automatisch
+	dan zet je de ip address erbij
+
+b.	ga naar config->settings
+	zet de gateway erin
+	en zet de dns server erin
+
+
+14. een router als dhcp client instellen
+
+en 
+config t
+int ( de poort die je moet gebruiken )
+description DHCP Client
+ip address dhcp 
+no shut
+
+ROUTER IP ADDRESS ZETTEN
+	
+en 
+config t
+int ( de poort die je moet gebruiken )
+ip address (hier ip en submask invullen)
+no shut
+
+
+15. ip address zetten op een muli layer switch
+
+en
+config t
+int ( de poort die je moet gebruiken )
+no switchport
+ip address (hier ip en submask invullen)
+no shut
+
+(CTRL+SHIFT+6) <<<<----- ZO KOM JE UIT DE WACHTIJD ALS JE ENABLE VERKEERD TYPT
+
+
+16. ip address op vlan zetten op mls
+
+en
+config t
+int (vlan die je wilt instellen)
+ip add (de ip+submask)
+ip helper-address (+de dns)
+
+en dan zo verder gaan met elke vlan^^^
+
+17. op de mls de ip reservering voor vlans
+
+en
+config t
+ip dhcp excluded-address ( welke ip's je gaat reserveren)
+
+en dan zo verder gaan op  
+
+18. ip pool aanmaken op mls
+
+en
+config t
+ip dhcp pool (de vlan of naam die je nodgi hebt)
+default-router ( de ip address )
+dns-server ( de dns ip )
+network ( de ip van het netwerk
+
+dit op alles vlans doen^^^^
+
+
+19. nu ga je de back up router doen 
+
+op de router ga je do show run intikken en dan de ip dhcp excluded-address en ip dhcp pool kopieeren
+
+en nu op de back up router open je die en dan plak je dat stukje erin
+
+nu even een backup maken met de command (copy run start)
+
+en dan even voor de zekerheid showrun even checken
+
+
+20. nu ga je de routers veranderen
+
+maak even een ss van hoe de bekabeling zat met de ouderen routen 
+
+haal dan de kabels weg 
+
+verplaats de oude router naar de andere kan en zet daar dan de backup router
+
+klik op de backup router en zet die dan uit
+
+zet in de backup router dan een glasvezel poort in (GLC-GE-100FX)
+
+zet de router aan
+
+
+
+open de server op physical modes
+
+zet de server uit
+
+haal de port eruit
+
+zet een ( PT-HOST-NM-1FFE)IN DE SERVER OP DE BOVENSTE SLOTJE
+
+
+
+21. glasvezel bekabeling fixen
+
+(DE GLASVEZEL KABEL IS DE GELEN KABEL WAAR FIBER OP STAAT)
+
+begin bij de backup router en kies de glasvezelpoort
+
+en die slepen naar de server en dan ook de fastethernet glasvezel kiezen
+
+
+22. nu ga je de oude kabel van de routers aan elkaar bekabelen met copper cross-over
+
+23. nu ga je op de backup router de poort van de glasvezel aan zetten bij het tab (CONFIG)
+
+24. nu ga je de ip's invullen op de router die je van de opdracht hebt gekregen gebruik dit comando ervoor:
+
+en
+config t
+int ( de poort die je nodig hebt)
+no shut
+description (de naam)
+ip address dhcp
+
+GA NAAR DE BACKUP ROUTER
+
+en
+config t
+show ip int brief( met dit commando kan je zient welke poorten ip's hebben)
+int ( de poort die je nodig hebt)
+no shut
+ip add (de ip die je nodig hebt en de submask)
+
+NU GA JE NAAR DE SERVERN EN DAN DESKTOP EN IP CONFIG
+	
+je zet de juiste ip erin en submask en gateway
+
+25. nu ga je checken bij de server en dan het tab services -> dns dan kijken of het goed is
+
+
+26 . nu kan je de ip adressen uitbreiden door middel van de p edge router te gebruiken
+
+en 
+config t 
+ip route (de ip en submask die je nodig hebt)
+
+27. ospf instellen
+ga naar de p edge router
+
+en
+config t
+ip route 0.0.0.0 0.0.0.0 (dit zie je aan de next hop dat betekent waar de router vervolgens heen moet gaan om bij het internet te komen)
+do show ip route (de c zijn belangrijk en die moet je instellen als ospf)
+router ospf 1
+network (10.1.1.0 + /30 inverse masker) area 0 (DIT MOET JE ZOVAK DOEN TOT JE ALLE NETWEKEN HEBT)
+PASSIVE-INTERFACE (de poort die je nodig hebt)
+default-information originate
+show ip route voor hte checken
+
+dit dan ook bij de andere router 
+
+en
+config t
+ip route 0.0.0.0 0.0.0.0 lo 1(dit zie je aan de next hop dat betekent waar de router vervolgens heen moet gaan om bij het internet te komen)
+router ospf 1
+network (10.1.1.0 + /30 inverse masker) area 0 (DIT MOET JE ZOVAK DOEN TOT JE ALLE NETWEKEN HEBT)
+PASSIVE-INTERFACE (de poort die je nodig hebt)
+default-information originate
+show ip route voor hte checken
+
+
+28.NIET VERGETEN OP MLS DAFAULT GATEWAY MAKEN
+
+op de mls
+
+en
+config t
+ip route 0.0.0.0 0.0.0.0 10.1.1.1
+do show ip route 
+
+dan naar de p edge router
+
+en
+config t
+ip route 0.0.0.0 0.0.0.0 12.12.12.1
+do show ip route 
+
+dan naar de back up router
+
+en
+config t
+ip route 0.0.0.0 0.0.0.0 lo 1
+do show ip route 
