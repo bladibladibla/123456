@@ -1,0 +1,99 @@
+# Set default values
+$defaultMinutes = 1
+$defaultServer = "svr001"
+$whiteListFile = "$home\MonTool\WhiteList.txt"
+$signaleringenFile = "$home\MonTool\Signaleringen.txt"
+
+# Prompt user for input or use default values
+$minutes = Read-Host -Prompt "Enter the number of minutes (default is $defaultMinutes)"
+$minutes = if ($minutes) { $minutes } else { $defaultMinutes }
+
+$server = Read-Host -Prompt "Enter the server name (default is $defaultServer)"
+$server = if ($server) { $server } else { $defaultServer }
+
+# Prepare time interval
+$periode = New-TimeSpan -Minutes $minutes
+$startTijd = Get-Date
+$stopTijd = $startTijd + $periode
+
+Write-Host "`nProcesChecker started at $startTijd on server $server for $minutes minutes"
+Set-Content -Path $signaleringenFile -Value "$server, $startTijd"
+
+# Perform actions until the specified time is reached
+do {
+    $arrayMetProcessen = Invoke-Command -ComputerName $server { Get-Process | Select-Object -ExpandProperty Name }
+
+    foreach ($processName in $arrayMetProcessen) {
+        if (-not ($arrayMetWhiteList -contains $processName)) {
+            $answer = Read-Host -Prompt "Process $processName is unknown. Add to whitelist? (y/n)"
+            while ($answer -notmatch '[yn]') {
+                $answer = Read-Host -Prompt "Invalid choice. Enter 'y' or 'n'"
+            }
+
+            if ($answer -eq 'y') {
+                $arrayMetWhiteList += $processName
+            } else {
+                Add-Content -Path $signaleringenFile -Value $processName
+            }
+        }
+    }
+
+    # Display a moving rectangle on the screen
+    $width = 30
+    $height = 15
+
+    for ($i = 0; $i -lt $width; $i++) {
+        Write-Host -NoNewline "*"
+        Start-Sleep -Milliseconds 20
+    }
+    Write-Host ""
+
+    for ($j = 0; $j -lt $height - 2; $j++) {
+        Write-Host -NoNewline ""
+        for ($i = 0; $i -lt $width - 2; $i++) {
+            Write-Host -NoNewline " "
+            Start-Sleep -Milliseconds 20
+        }
+        Write-Host ""
+        Start-Sleep -Milliseconds 20
+    }
+
+    for ($i = 0; $i -lt $width; $i++) {
+        Write-Host -NoNewline "*"
+        Start-Sleep -Milliseconds 20
+    }
+
+    # Wait for 5 seconds
+    Start-Sleep -Seconds 5
+} while ((Get-Date) -lt $stopTijd)
+
+# Perform closing actions
+$answer = Read-Host -Prompt "Print the message? (y/n)"
+while ($answer -notmatch '[yn]') {
+    $answer = Read-Host -Prompt "Invalid choice. Enter 'y' or 'n'"
+}
+
+if ($answer -eq 'y') {
+    # Code to print alert messages
+}
+
+# Write the whitelist to a file
+if ($arrayMetWhiteList) {
+    $arrayMetWhiteList | Out-File $whiteListFile
+} else {
+    Out-File -FilePath $whiteListFile
+}
+
+# Print the alert messages
+$answer = Read-Host -Prompt "Print the alert messages? (y/n)"
+while ($answer -notmatch '[yn]') {
+    $answer = Read-Host -Prompt "Invalid choice. Enter 'y' or 'n'"
+}
+
+if ($answer -eq 'y') {
+    Write-Host "`n`n======================`nAlert Messages from $startTijd to $stopTijd"
+    # Print alert messages from file or any other relevant information
+}
+
+# Display closing message with end date/time
+Write-Host "======================`nProcesChecker ended at $(Get-Date)`n"
