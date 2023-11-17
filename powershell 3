@@ -1,0 +1,54 @@
+Vraag de naam van de server op waarop je de processen wilt checken en wijs deze toe
+aan de variable: $server
+
+$server = Read-Host -Prompt "Voer de naam van de server in waarvan je de processen wilt checken"
+
+------------------------------------------------------------------------------------------------------------
+
+haal datum en tijd op
+$datum_tijd = Get-Date;
+
+haal de 'whitelist' op
+$white_list = "$home\MonTool\whitelist.txt";
+
+haal het bestand met signaleringen op
+$signaleringen = "$home\MonTool\signaleringen.txt";
+
+------------------------------------------------------------------------------------------------------------
+
+Neem de 'whitelist' in een variabele op met de naam: [string[]]$array_white_list
+$array_white_list = Get-Content -Path $white_list
+
+------------------------------------------------------------------------------------------------------------
+
+# weergave startboodschap op het scherm met daarna een wachttijd van 5 seconden
+Write-Host "De ServerProcessChecker is gestart op: '$datum tijd'";
+Write-Host "De opgegeven server is: '$server'";
+
+Write-Host "Er wordt gecheckt of server '$server' bestaat";
+Start-Sleep -Seconds 5;
+
+------------------------------------------------------------------------------------------------------------
+
+#Maak het signaleringenbestand leeg en vul met de naam van de te monitoren server en datum/tijd.
+#Server: <servernaam>
+#Datum/Tijd: <datum en tijd>
+         Set-Content -Path $signaleringen -Value "Server: $server`nDatum/Tijd: $datum_tijd"
+------------------------------------------------------------------------------------------------------------
+
+#Voeg de procesnaam toe aan het signaleringenbestand
+                   Add-Content -Path $signaleringen -Value $proces naam
+
+Set-Content -Path $signaleringen -Value "Server: $servernDatum/Tijd: $datum_tijd"
+
+------------------------------------------------------------------------------------------------------------
+
+# Genereer het bestand met de whitelist opnieuw (ook al zijn er geen processen aan toegevoegd)
+
+ $array_white_list | Set-Content -Path $white_list
+
+------------------------------------------------------------------------------------------------------------
+
+# geef een afsluitende melding weer op het scherm
+Write-Host "Datum/Tijd: $datum_tijd"
+Write-Host "nHET SCRIPT IS KLAAR MET DE UITVOERING`nTOT DE VOLGENDE KEER";
