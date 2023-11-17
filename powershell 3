@@ -52,3 +52,6 @@ Set-Content -Path $signaleringen -Value "Server: $servernDatum/Tijd: $datum_tijd
 # geef een afsluitende melding weer op het scherm
 Write-Host "Datum/Tijd: $datum_tijd"
 Write-Host "nHET SCRIPT IS KLAAR MET DE UITVOERING`nTOT DE VOLGENDE KEER";
+
+# de variable $error wordt leeggemaakt
+$Error.Clear();
