@@ -1,0 +1,101 @@
+XCML examen
+1. Schakel automatisch afspelen uit voor alle media en apparaten.
+Open de instellingen van het apparaat waarop je automatisch afspelen wilt uitschakelen ,
+zoals je computer, telefoon, tablet of televisie.
+Zoek de instellingen voor &quot;Automatisch afspelen&quot; of &quot;Auto Play&quot;. Dit kan worden
+gevonden in verschillende delen van de instellingen, afhankelijk van het apparaat en het
+besturingssysteem.
+Schakel de automatisch afspelen-functie uit. Dit kan worden gedaan door de
+schuifregelaar, knop of selectievakje uit te schakelen, afhankelijk van het apparaat en de
+instellingen. Controleer of de wijzigingen zijn opgeslagen en sluit de instellingen af.
+2. Stel Windows updates in van 03.00 – 08:00 uur.
+Klik op de Startknop en selecteer het instellingenpictogram (tandwielpictogram) in het
+menu Start of druk op de toetsencombinatie &quot;Windows-toets + i&quot; om de instellingen te
+openen.
+Selecteer &quot;Bijwerken en beveiliging&quot; in de instellingen.
+Klik op de optie &quot;Windows Update&quot; in het linker paneel.
+Klik op de link &quot;Geavanceerde opties&quot; onder de sectie &quot;Windows Update-instellingen&quot;.
+Zoek de optie &quot;Activeer de herinnering voor herstarten&quot; en schakel deze in. Hierdoor
+ontvang je een melding wanneer de update is gedownload en klaar is om te worden
+geïnstalleerd.
+Zoek de optie &quot;Automatisch opnieuw opstarten plannen&quot; en schakel deze in. Hierdoor kun
+je een specifiek tijdstip kiezen waarop je computer automatisch opnieuw wordt opgestart
+om de update te installeren.
+Klik op de link &quot;Tijden kiezen&quot; onder de optie &quot;Automatisch opnieuw opstarten plannen&quot;.
+Kies in het venster dat verschijnt de starttijd (03:00 uur) en de eindtijd (08:00 uur) waarin
+de automatische updates kunnen worden geïnstalleerd.
+Klik op de knop &quot;Opslaan&quot; om de wijzigingen op te slaan en te sluiten.
+Na deze stappen worden Windows updates automatisch geïnstalleerd tussen 03:00 uur en
+08:00 uur, afhankelijk van de beschikbaarheid van updates en de instellingen van je
+apparaat. Opmerking: als je op het opgegeven tijdstip niet op je apparaat bent ingelogd,
+wordt de installatie van de updates mogelijk vertraagd totdat je opnieuw inlogt.
+3. Activiteitengeschiedenis mag niet bewaard worden en niet verzonden worden naar MS
+
+Klik op de Startknop en selecteer het instellingenpictogram (tandwielpictogram) in het
+menu Start of druk op de toetsencombinatie &quot;Windows-toets + i&quot; om de instellingen te
+openen.
+Selecteer &quot;Privacy&quot; in de instellingen.
+Klik op de optie &quot;Activiteitengeschiedenis&quot; in het linker paneel.
+Schakel de optie &quot;Activiteitengeschiedenis bijhouden&quot; uit. Hierdoor wordt voorkomen dat
+Windows activiteiten zoals de zoekopdrachten en het gebruik van apps bijhoudt.
+Schakel de optie &quot;Mijn activiteitensets verzenden naar Microsoft&quot; uit. Hierdoor wordt
+voorkomen dat activiteitengegevens worden verzonden naar Microsoft voor
+analysedoeleinden.
+Als je ook wilt voorkomen dat Windows synchronisatie van activiteiten tussen apparaten
+toestaat, schakel je de optie &quot;Synchroniseren van activiteiten met accounts op andere
+apparaten&quot; uit.
+Sluit het venster Instellingen.
+Na deze stappen wordt de activiteitengeschiedenis op je apparaat niet meer bijgehouden
+en worden de gegevens niet meer verzonden naar Microsoft. Let op dat sommige apps nog
+steeds hun eigen activiteitengeschiedenis kunnen bijhouden, dus controleer de instellingen
+van individuele apps als je hun activiteitengeschiedenis wilt uitschakelen.
+4. Zorg dat meldingen en acties niet op vergrendelingsscherm worden weergegeven.
+Klik op de Startknop en selecteer het instellingenpictogram (tandwielpictogram) in het
+menu Start of druk op de toetsencombinatie &quot;Windows-toets + i&quot; om de instellingen te
+openen.
+Selecteer &quot;Systeem&quot; in de instellingen.
+Klik op de optie &quot;Vergrendelingsscherm&quot; in het linker paneel.
+Zoek de optie &quot;Meldingen weergeven op het vergrendelscherm&quot; en schakel deze uit.
+Als je wilt voorkomen dat er acties worden weergegeven op het vergrendelingsscherm,
+schakel dan de optie &quot;Snelle statuspictogrammen weergeven op het vergrendelscherm&quot;
+uit.
+Sluit het venster Instellingen.
+Na deze stappen worden meldingen en acties niet meer weergegeven op het
+vergrendelingsscherm. Houd er rekening mee dat sommige apps nog steeds meldingen
+kunnen weergeven op het vergrendelingsscherm, zelfs als je deze optie hebt uitgeschakeld.
+
+Om ervoor te zorgen dat meldingen volledig worden uitgeschakeld, moet je mogelijk de
+instellingen van individuele apps aanpassen.
+5. Noem 3 manieren ter beveiliging van je laptop.
+VPN, Windows Defender, twee factor authenticatie en antivirus software
+6. Stel Adobe Reader in als standaard applicatie voor Pdf-bestanden.
+Klik met de rechtermuisknop op een willekeurig pdf-bestand op je computer.
+Selecteer &quot;Openen met&quot; en klik vervolgens op &quot;Standaardprogramma kiezen&quot;.
+Er verschijnt een venster waarin je de optie hebt om een programma te kiezen uit een lijst
+met beschikbare programma&#39;s. Zoek en selecteer &quot;Adobe Reader&quot;.
+Als je &quot;Adobe Reader&quot; niet ziet in de lijst, klik dan op de optie &quot;Andere opties&quot; en zoek naar
+Adobe Reader. Als je het programma hebt gevonden, selecteer je het en klik je op &quot;OK&quot;.
+Als je ervoor wilt zorgen dat alle pdf-bestanden standaard worden geopend met Adobe
+Reader, vink dan de optie &quot;Dit type bestand altijd met dit programma openen&quot; aan.
+Klik op &quot;OK&quot; om de wijzigingen op te slaan.
+Na deze stappen zullen alle pdf-bestanden standaard worden geopend met Adobe Reader
+wanneer je erop dubbelklikt.
+7. Zorg dat shadow copies aan staat en maak een kopie en zorg dat alleen de C-schijf dagelijks
+een snapshot maakt.
+Klik met de rechtermuisknop op &quot;Deze pc&quot; en selecteer &quot;Eigenschappen&quot;.
+Klik op &quot;Systeembeveiliging&quot; in het linker paneel.
+Selecteer de C-schijf en klik op &quot;Configureren&quot;.
+Klik op &quot;Systeembeveiliging inschakelen&quot; als deze optie nog niet is ingeschakeld.
+Klik op &quot;Max. gebruik&quot; en stel de hoeveelheid schijfruimte in die je wilt toewijzen voor
+Shadow Copies. Het is aan te raden om minimaal 10% van de totale schijfruimte toe te
+wijzen.
+Klik op &quot;OK&quot; en vervolgens op &quot;Maken&quot; om een snapshot te maken van de C-schijf.
+Om ervoor te zorgen dat er dagelijks automatisch een snapshot van de C-schijf wordt
+gemaakt, klik je op &quot;Configureren&quot;.
+Kies &quot;Dagelijks&quot; onder &quot;Herstelpunt maken op schema&quot; en stel de gewenste tijd in.
+
+Klik op &quot;OK&quot; om de wijzigingen op te slaan.
+Na deze stappen zal Shadow Copies zijn ingeschakeld en zal er dagelijks automatisch een
+snapshot van de C-schijf worden gemaakt. Het is belangrijk om regelmatig een back-up van
+je belangrijke gegevens te maken, omdat Shadow Copies alleen werkt als er voldoende
+schijfruimte beschikbaar is.
