@@ -1,0 +1,11 @@
+@ECHO OFF
+CLS
+ECHO.
+ECHO.
+ECHO Office 2019 wordt geïnstalleerd op uw systeem.
+ECHO.
+ECHO Onderbreek dit niet en wacht tot de installatie gereed is !
+ECHO Druk op een toets om de installatie te beginnnen.
+PAUSE
+cd "C:\Map met installatiebestanden\Office2019"
+setup.exe /configue "Office2019settingsbedrijf.xml"
