@@ -1,0 +1,110 @@
+harriewerkproces 2 
+
+1. begin eerst met een laptop pakken met een console kabel.
+
+
+2. connect de kabel met een van de devices 
+
+
+3.   als je dat hebt gedaan ga je inloggen 
+
+
+4. dan gebruik je dit commando (sh lldp nei)
+dit laat zien wie met wie is geconnect.
+
+(als je gi0/0 ziet is hetr altijd 1gb)
+
+
+5. om ip's de kunnen bekijken moet je de commando (show run) gebruiken
+
+
+6. om te zien of het een acces of trunk is de commando (sh run) the grbuiken en als je geen ip addres ziet bij de interface of er zitten vlans op de poort dan is het een trunk
+
+(	EEN TRUNK IS ALTIJD MET EEN TRUNK VERBONDEN		)( 	(SHOW INTERFACE TRUNK) KAN JE OOK GEBRUIKEN VOOR EEN SWITCH)
+
+
+7. door (ssh -l (de gebruikersnaam +ip) kan je snel veranderen van device.
+
+
+8. check alle devices voor een afwijking
+
+
+9. impact is tussen 1-3 3 is hoog 1 is laag
+
+
+10. commands die je moet weten
+
+
+
+SH RUN= DAN KAN JE ALLES ZIEN WAT AAN OF UIT STAAT
+
+SH RUN= PRIVILEGED PASSWORD SET
+
+SH RUN= IP DOMAIN-NAME AANWEZIG
+
+SH RUN= WACHTWOORD OP CONSOLE
+
+SH RUN= WACHTWOORD OP VTY
+
+SHOW IP PROTOCOL= ROUTING PROTOCOL AANWEZIG
+
+SHOW IP ROUTE= DEFAULT ROUTE AANWEZIG
+
+SHOW IP ROUTE CONNECTED= ZIJN ER CONNECTED ROUTES EN ZO JA WELKE?
+
+SHOW IP ROUTE OSPF= ZIJN ER OSPF ROUTES EN ZO JA WELKE?
+
+SH LLDP NEI= DAN KAN JE ZIEN WIE ER GECONNECT IS MET JOU
+
+SSH -L (GEBRUIKERSNAAM+IP)=DAN KAN JE VERANDEREN VAN DEVICE 
+
+SHOW INTERFACE TRUNK= DAN KAN JE OP EEN SWITCH ZIEN OF HET IS GECONNECT AAN EEN TRUNK
+
+SHOW STARTUP-CONFIG= VERWACHT EEN KOPIE VAN EEN RUNNING CONFIG (ALS DAT ER NIET STAAT IS HET FOUT)
+
+SHOW CLOCK= KAN JE ZIEN WAT DE DATUM EN TIJD IS 
+
+show port-security= dan zie je welke poorten 
+
+show access-list= gebruiken om te laten zien dat je pingen niet werkt
+
+11. BIJ GEKOZEN TOOLS ZET JE DE TOOL- ID VAN DE DEVICE DIE JE GAAT GEBRUIKEN
+
+
+
+12. NTP SERVER MOET CORRECT WORDEN AANGEROEPEN
+DIT DOE JE DOOR OP DE NTP SERVER TE KLIKKEN EN DAN NAAR SERVICES-> NTP DAN AAN ZETTEN EN OP DE DATUM VAN VANDAAG ZETTEN.
+
+
+
+13. WALT VALT JE OP ALS JE LET OP DE SNELHEID VAN DE CONNECTIE VAN DE PC'S NAAR DE SWITCHES
+JE MOET KIJKEN NAAR DE LAMPJES EN HOE SNEL DIE NAAR GROEN VERANDEREN DE SLOOMSTE ZAL DAN EEN PROBLEEMPJE HEBBEN. 
+DAN GA JE NAAR DE ADMIN PC EN LOG JE IN OP DE DEVICE.
+GEBRUIK DAN SH RUN EN ZOEK DIE POORT
+ALS ER SPANNING-TREE PORTFAST STAAT DAN BETEKENT DAT DAT GAAT HET NIKS CHECKEN DAN GAAT HET DIRECT OP GROEN.
+
+
+12.als de pc geen dhcp krijgt moet je kijken naar terminal en kijken of de poort down is 
+show port-security( de poort die je nodig hebt ) hier basseer je de advies op 
+
+
+14. ANTWOORDEN VAN DE IMPACT RISICO
+
+1. SSH ONDERDEEL
+GEMIDDELD RISICO
+SSH INSTELLEN OP DEVICES
+
+2. VIA DE CLI CONTROLEREN OF DE STARTUO-CONFIG AANWEZIG IS
+HOOG RISICO
+BIJ EEN CRASH KAN DE RUNNING-CONFIG CORRUPT RAKEN. ER IS DAN GEEN BACKUP.
+
+3. NTP SERVER WORD CORRECT AANGEROEPEN
+HOOG RISICO
+VOOR SYNCHRONISATIE TUSSEN NETWERKAPPARATUUR IS EEN VERSCHIL IN DATUM EN TIJD IS SLECHT EN WORD ONNOUWKEURIG.
+
+4. WAT VALT JE OP ALS JE LET OP DE SNELHEID VAN DE CONNECTIE VAN DE PC'S NAAR DE SWITCHES
+laag risico
+GEBRUIK HET COMMANDO PORTFAST OM ACCESS POORTEN METEEN ACTIEF TE KRIJGEN OM ZODOENDE PERFORMANCE VAN JE NETWERK TE VERHOGEN
+
+5. hoge risico
+je moet geen switch op de systeembeheer aansluiten zonder toestemming
